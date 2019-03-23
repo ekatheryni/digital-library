@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Rokkitt');
+@import url('https://fonts.googleapis.com/css?family=Rokkitt:400,600,900');
 
 
 body {
@@ -7,6 +7,16 @@ body {
   font-family: "Rokkitt", serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html, body, #root{
+  height: 100%;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 code {

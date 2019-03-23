@@ -1,0 +1,32 @@
+.about-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex:1;
+    overflow: hidden;
+    .picture{
+        width: 220px;
+        height: 220px;
+    }
+    
+    .description{
+        padding-left: 80px;
+        width: 600px;
+        h2{
+            font-size: 48px;
+            font-weight: bold;
+            margin: 0;
+            margin-bottom: 20px
+        }
+        p{
+            margin-bottom: 40px;
+            font-size: 24px;
+        }
+
+        .buttons{
+            button{
+                margin-right: 27px;
+            }
+        }
+    }
+}
