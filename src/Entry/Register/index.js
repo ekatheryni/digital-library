@@ -6,58 +6,24 @@ import {
   } from 'antd';
   
   const { Option } = Select;
-  const AutoCompleteOption = AutoComplete.Option;
   
   const residences = [
     {
-    value: '1',
-    label: '1',
-    children: [
-      {value: 'FI',
-      label: 'FI',
-      children: [{
-        value: 'AM',
-        label: 'AM',
-        },{
-        value: 'PI',
-        label: 'PI',
-        }]
-        },
+    value: 'FEN',
+    label: 'FEN',},
     {
-        value: 'FEN',
-        label: 'FEN',
-        children: [{
-          value: 'Managment',
-          label: 'Managment',
-        },{
-          value: 'Finance',
-          label: 'Finance',
-        }]
-    }]},
+    value: 'FGN',
+    label: 'FGN',
+    },
     {
-    value: '2',
-    label: '2',
-    children: [{
       value: 'FI',
       label: 'FI',
-      children: [{
-        value: 'AM',
-        label: 'AM',
-      },{
-        value: 'PI',
-        label: 'PI',
-    }],
-    },{
-        value: 'FEN',
-        label: 'FEN',
-        children: [{
-          value: 'Managment',
-          label: 'Managment',
-        },{
-          value: 'Finance',
-          label: 'Finance',}
-      ], 
-    }]},]; 
+    },
+    {
+      value: 'FL',
+      label: 'FL',
+    },  
+  ]; 
   
   class Register extends React.Component {
     state = {
@@ -99,7 +65,7 @@ import {
   
     render() {
       const { getFieldDecorator } = this.props.form;
-      const { autoCompleteResult } = this.state;
+     
   
       const formItemLayout = {
         labelCol: {
@@ -130,10 +96,6 @@ import {
           <Option value="38">+38</Option>
         </Select>
       );
-  
-      const websiteOptions = autoCompleteResult.map(website => (
-        <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
-      ));
   
       return (
         <div className='registerform'>
@@ -180,25 +142,41 @@ import {
           <Form.Item
             label={(
               <span>
-                Full name&nbsp;
-                <Tooltip title="Please input your name and surname">
+                First name&nbsp;
+                <Tooltip title="Please input your name">
                   <Icon type="question-circle-o" />
                 </Tooltip>
               </span>
             )}
           >
-            {getFieldDecorator('nickname', {
+            {getFieldDecorator('name', {
               rules: [{ required: true, message: 'Please input your name!', whitespace: true }],
             })(
               <Input />
             )}
           </Form.Item>
           <Form.Item
-            label="Course/Faculty/Specialization"
+            label={(
+              <span>
+                Last name&nbsp;
+                <Tooltip title="Please input your surname">
+                  <Icon type="question-circle-o" />
+                </Tooltip>
+              </span>
+            )}
+          >
+            {getFieldDecorator('surname', {
+              rules: [{ required: true, message: 'Please input your surname!', whitespace: true }],
+            })(
+              <Input />
+            )}
+          </Form.Item>
+          <Form.Item
+            label="Faculty"
           >
             {getFieldDecorator('residence', {
-              initialValue: ['course', 'faculty', 'specialization'],
-              rules: [{ type: 'array', required: true, message: 'Please select your course/faculty/specialization!' }],
+              initialValue: ['faculty'],
+              rules: [{ type: 'array', required: true, message: 'Please select your faculty!' }],
             })(
               <Cascader options={residences} />
             )}

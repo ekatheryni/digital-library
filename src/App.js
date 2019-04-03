@@ -7,6 +7,7 @@ import Student from './pages/Student';
 import Librarian from './pages/Librarian';
 import Login from './Entry/Login';
 import Register from './Entry/Register';
+import Books_st from './pages/Student/Books_st';
 
 const history = createBrowserHistory()
 
@@ -22,6 +23,7 @@ class App extends Component {
               <Route path='/librarian' component={Librarian}/>
               <Route path='/login' component={Login}/>
               <Route path='/register' component={Register}/>
+              <Route path='/books_st' component={Books_st}/>
             </Switch>
           </div>
         </Router>
