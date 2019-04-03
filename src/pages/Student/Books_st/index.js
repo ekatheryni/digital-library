@@ -1,9 +1,9 @@
 import React from 'react'
 import "antd/dist/antd.css"
 import './style.scss'
-import { Table, Divider, Tag } from 'antd';
-
-const { Column, ColumnGroup } = Table;
+import { Table, Input } from 'antd';
+const Search = Input.Search;
+const { Column } = Table;
 
 const data = [{
   key: '1',
@@ -28,6 +28,14 @@ class Books_st extends React.Component{
 render(){
     return(
         <div className='catalog'>
+        <div className='search'>
+        <Search
+      placeholder="search book"
+      onSearch={value => console.log(value)}
+      style={{ width: 500 }}
+      enterButton
+    />
+    </div>
 <Table dataSource={data}>
     <Column
       title="Title"

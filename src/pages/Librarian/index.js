@@ -2,6 +2,7 @@ import React from 'react'
 import "antd/dist/antd.css"
 import './style.scss'
 
+import {Link} from 'react-router-dom'
 import { Card, Icon, Avatar } from 'antd';
 
 const { Meta } = Card;
@@ -27,7 +28,7 @@ render(){
   <Card
     style={{ width: 300 }}
     cover={<img className="card_img" src={require('../../assets/students.svg')}/>}
-    actions={[<Icon type="search" />]}
+    actions={[<Link to='/Students_lib'><Icon type="search" /></Link>]}
   >
     <Meta
       title="Students"
