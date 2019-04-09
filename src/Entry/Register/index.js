@@ -1,5 +1,6 @@
 import React from 'react'
 import "antd/dist/antd.css"
+import axios from 'axios'
 import './style.scss'
 import {
     Form, Input, Tooltip, Icon, Cascader, Select, Button, AutoComplete,
@@ -7,7 +8,7 @@ import {
   
   const { Option } = Select;
   
-  const residences = [
+  const faculty = [
     {
     value: 'FEN',
     label: 'FEN',},
@@ -33,13 +34,25 @@ import {
   
     handleSubmit = (e) => {
       e.preventDefault();
+      const student = {
+        password:	this.state.password,
+        firstName:	this.state.name,
+        lastName:	this.state.surname,
+        email:	this.state.email,
+        phoneNumber:	this.state.phone,
+        facultyCode: this.state.faculty
+      };
       this.props.form.validateFieldsAndScroll((err, values) => {
         if (!err) {
+          axios.post(`https://library-service-naukma.herokuapp.com/api/students`, { student })
+        .then(res => {
+          console.log(res.data);
           console.log('Received values of form: ', values);
+        })
         }
       });
     }
-  
+    
     handleConfirmBlur = (e) => {
       const value = e.target.value;
       this.setState({ confirmDirty: this.state.confirmDirty || !!value });
@@ -174,11 +187,11 @@ import {
           <Form.Item
             label="Faculty"
           >
-            {getFieldDecorator('residence', {
+            {getFieldDecorator('faculty', {
               initialValue: ['faculty'],
               rules: [{ type: 'array', required: true, message: 'Please select your faculty!' }],
             })(
-              <Cascader options={residences} />
+              <Cascader options={faculty} />
             )}
           </Form.Item>
           <Form.Item
