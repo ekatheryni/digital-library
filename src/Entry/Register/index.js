@@ -39,12 +39,12 @@ import {
     handleSubmit = (e) => {
       e.preventDefault();
       const student = {
-        password:	this.state.password,
-        firstName:	this.state.name,
-        lastName:	this.state.surname,
-        email:	this.state.email,
-        phoneNumber:	this.state.phone,
-        facultyCode: this.state.faculty
+        Password:	this.state.Password,
+        FirstName:	this.state.FirstName,
+        LastName:	this.state.LastName,
+        Email:	this.state.Email,
+        PhoneNumber:	this.state.PhoneNumber,
+        FacultyCode: this.state.FacultyCode
       };
       this.props.form.validateFieldsAndScroll((err, values) => {
         if (!err) {
@@ -166,7 +166,7 @@ import {
               </span>
             )}
           >
-            {getFieldDecorator('name', {
+            {getFieldDecorator('FirstName', {
               rules: [{ required: true, message: 'Please input your name!', whitespace: true }],
             })(
               <Input />
@@ -182,7 +182,7 @@ import {
               </span>
             )}
           >
-            {getFieldDecorator('surname', {
+            {getFieldDecorator('LastName', {
               rules: [{ required: true, message: 'Please input your surname!', whitespace: true }],
             })(
               <Input />
@@ -191,7 +191,7 @@ import {
           <Form.Item
             label="Faculty"
           >
-            {getFieldDecorator('faculty', {
+            {getFieldDecorator('FacultyCode', {
               initialValue: ['faculty'],
               rules: [{ type: 'array', required: true, message: 'Please select your faculty!' }],
             })(
@@ -201,7 +201,7 @@ import {
           <Form.Item
             label="Phone Number"
           >
-            {getFieldDecorator('phone', {
+            {getFieldDecorator('PhoneNumber', {
               rules: [{ required: true, message: 'Please input your phone number!' }],
             })(
               <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
