@@ -31,19 +31,35 @@ import {
   ]; 
   
   class Register extends React.Component {
-    state = {
-      confirmDirty: false,
-      autoCompleteResult: [],
-    };
-  
-    handleSubmit = (e) => {
-      e.preventDefault();
+    constructor(props) {
+      super(props);
+
+      this.state = {
+        confirmDirty: false,
+        autoCompleteResult: [],
+        Password:'',
+        FirstName:'',
+        LastName:'',
+        Email:'',
+        PhoneNumber:'',
+        FacultyCode:''
+      };
+
+      this.handleChange = this.handleChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
+  }
+    
+    handleChange(event) {
+      
+    }
+    handleSubmit = event => {
+      event.preventDefault();
       const student = {
         Password:	this.state.Password,
-        FirstName:	this.state.FirstName,
+        FirstName: this.state.FirstName,
         LastName:	this.state.LastName,
-        Email:	this.state.Email,
-        PhoneNumber:	this.state.PhoneNumber,
+        Email: this.state.Email,
+        PhoneNumber: this.state.PhoneNumber,
         FacultyCode: this.state.FacultyCode
       };
       this.props.form.validateFieldsAndScroll((err, values) => {
@@ -51,7 +67,6 @@ import {
           axios.post(`https://library-service-naukma.herokuapp.com/api/students`, { student })
         .then(res => {
           console.log(res.data);
-          console.log('Received values of form: ', values);
         })
         }
       });
@@ -64,8 +79,8 @@ import {
   
     compareToFirstPassword = (rule, value, callback) => {
       const form = this.props.form;
-      if (value && value !== form.getFieldValue('password')) {
-        callback('Two passwords that you enter is inconsistent!');
+      if (value && value !== form.getFieldValue('Password')) {
+        callback('Two passwords that you enter are inconsistent!');
       } else {
         callback();
       }
@@ -83,7 +98,6 @@ import {
     render() {
       const { getFieldDecorator } = this.props.form;
      
-  
       const formItemLayout = {
         labelCol: {
           xs: { span: 24 },
@@ -118,29 +132,29 @@ import {
         <div className='registerform'>
         <Form {...formItemLayout} onSubmit={this.handleSubmit}>
           <Form.Item
-            label="E-mail"
+            label="E-mail" 
           >
-            {getFieldDecorator('email', {
+            {getFieldDecorator('Email', {
               rules: [{
                 type: 'email', message: 'The input is not valid E-mail!',
               }, {
                 required: true, message: 'Please input your E-mail!',
               }],
             })(
-              <Input />
+              <Input type="text"/>
             )}
           </Form.Item>
           <Form.Item
             label="Password"
           >
-            {getFieldDecorator('password', {
+            {getFieldDecorator('Password', {
               rules: [{
                 required: true, message: 'Please input your password!',
               }, {
                 validator: this.validateToNextPassword,
               }],
             })(
-              <Input type="password" />
+              <Input type="password" value={this.state.Password} onChange={this.handleChange}/>
             )}
           </Form.Item>
           <Form.Item
@@ -169,7 +183,7 @@ import {
             {getFieldDecorator('FirstName', {
               rules: [{ required: true, message: 'Please input your name!', whitespace: true }],
             })(
-              <Input />
+              <Input type="text" value={this.state.FirstName} onChange={this.handleChange}/>
             )}
           </Form.Item>
           <Form.Item
@@ -185,7 +199,7 @@ import {
             {getFieldDecorator('LastName', {
               rules: [{ required: true, message: 'Please input your surname!', whitespace: true }],
             })(
-              <Input />
+              <Input type="text" value={this.state.LastName} onChange={this.handleChange}/>
             )}
           </Form.Item>
           <Form.Item
@@ -204,7 +218,7 @@ import {
             {getFieldDecorator('PhoneNumber', {
               rules: [{ required: true, message: 'Please input your phone number!' }],
             })(
-              <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
+              <Input addonBefore={prefixSelector} style={{ width: '100%' }} type="text" value={this.state.PhoneNumber} onChange={this.handleChange}/>
             )}
           </Form.Item>
           
