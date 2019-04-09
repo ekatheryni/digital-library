@@ -3,26 +3,30 @@ import "antd/dist/antd.css"
 import axios from 'axios'
 import './style.scss'
 import {
-    Form, Input, Tooltip, Icon, Cascader, Select, Button, AutoComplete,
+    Form, Input, Tooltip, Icon, Cascader, Select, Button, 
   } from 'antd';
   
   const { Option } = Select;
   
   const faculty = [
     {
-    value: 'FEN',
-    label: 'FEN',},
+    value: 'FI',
+    label: 'FI',},
     {
-    value: 'FGN',
-    label: 'FGN',
+    value: 'FEN',
+    label: 'FEN',
     },
     {
-      value: 'FI',
-      label: 'FI',
+      value: 'FSSST',
+      label: 'FSSST',
     },
     {
       value: 'FL',
       label: 'FL',
+    }, 
+    {
+      value: 'FGN',
+      label: 'FGN',
     },  
   ]; 
   
