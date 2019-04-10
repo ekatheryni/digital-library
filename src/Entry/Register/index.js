@@ -8,67 +8,47 @@ import {
   
   const { Option } = Select;
   
-  const faculty = [
+  const groups = [
     {
-    value: 'FI',
-    label: 'FI',},
+    value: 'A1',
+    label: 'A1',},
     {
-    value: 'FEN',
-    label: 'FEN',
+    value: 'A2',
+    label: 'A2',
     },
     {
-      value: 'FSSST',
-      label: 'FSSST',
+      value: 'A3',
+      label: 'A3',
     },
     {
-      value: 'FL',
-      label: 'FL',
+      value: 'A4',
+      label: 'A4',
     }, 
     {
-      value: 'FGN',
-      label: 'FGN',
+      value: 'A5',
+      label: 'A5',
     },  
   ]; 
   
   class Register extends React.Component {
     constructor(props) {
       super(props);
-
-      this.state = {
+      this.state={
         confirmDirty: false,
-        autoCompleteResult: [],
-        Password:'',
-        FirstName:'',
-        LastName:'',
-        Email:'',
-        PhoneNumber:'',
-        FacultyCode:''
-      };
+      }
 
-      this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
   }
-    
-    handleChange(event) {
-      
-    }
-    handleSubmit = event => {
-      event.preventDefault();
-      const student = {
-        Password:	this.state.Password,
-        FirstName: this.state.FirstName,
-        LastName:	this.state.LastName,
-        Email: this.state.Email,
-        PhoneNumber: this.state.PhoneNumber,
-        FacultyCode: this.state.FacultyCode
-      };
+  
+    handleSubmit = (e) => {
+      e.preventDefault();
       this.props.form.validateFieldsAndScroll((err, values) => {
         if (!err) {
-          axios.post(`https://library-service-naukma.herokuapp.com/api/students`, { student })
-        .then(res => {
-          console.log(res.data);
-        })
-        }
+          axios.post(`https://library-service-naukma.herokuapp.com/api/students`, {...values, GroupCode: values.GroupCode[0]})
+      .then(res => {
+        console.log('Received values of form: ', values);
+      })
+    }
       });
     }
     
@@ -131,6 +111,22 @@ import {
       return (
         <div className='registerform'>
         <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+        <Form.Item
+            label={(
+              <span>
+                Username&nbsp;
+                <Tooltip title="Please input your username">
+                  <Icon type="question-circle-o" />
+                </Tooltip>
+              </span>
+            )}
+          >
+            {getFieldDecorator('Login', {
+              rules: [{ required: true, message: 'Please input your username!', whitespace: true }],
+            })(
+              <Input type="text"/>
+            )}
+          </Form.Item>
           <Form.Item
             label="E-mail" 
           >
@@ -154,7 +150,7 @@ import {
                 validator: this.validateToNextPassword,
               }],
             })(
-              <Input type="password" value={this.state.Password} onChange={this.handleChange}/>
+              <Input type="password"/>
             )}
           </Form.Item>
           <Form.Item
@@ -183,7 +179,7 @@ import {
             {getFieldDecorator('FirstName', {
               rules: [{ required: true, message: 'Please input your name!', whitespace: true }],
             })(
-              <Input type="text" value={this.state.FirstName} onChange={this.handleChange}/>
+              <Input type="text"/>
             )}
           </Form.Item>
           <Form.Item
@@ -199,17 +195,17 @@ import {
             {getFieldDecorator('LastName', {
               rules: [{ required: true, message: 'Please input your surname!', whitespace: true }],
             })(
-              <Input type="text" value={this.state.LastName} onChange={this.handleChange}/>
+              <Input type="text"/>
             )}
           </Form.Item>
           <Form.Item
-            label="Faculty"
+            label="Group"
           >
-            {getFieldDecorator('FacultyCode', {
-              initialValue: ['faculty'],
-              rules: [{ type: 'array', required: true, message: 'Please select your faculty!' }],
+            {getFieldDecorator('GroupCode', {
+              initialValue: ['group'],
+              rules: [{ type: 'array', required: true, message: 'Please select your group!' }],
             })(
-              <Cascader options={faculty} />
+              <Cascader options={groups} />
             )}
           </Form.Item>
           <Form.Item
@@ -218,7 +214,7 @@ import {
             {getFieldDecorator('PhoneNumber', {
               rules: [{ required: true, message: 'Please input your phone number!' }],
             })(
-              <Input addonBefore={prefixSelector} style={{ width: '100%' }} type="text" value={this.state.PhoneNumber} onChange={this.handleChange}/>
+              <Input addonBefore={prefixSelector} style={{ width: '100%' }}/>
             )}
           </Form.Item>
           
