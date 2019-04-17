@@ -28,7 +28,7 @@ class Login extends React.Component{
             <Form.Item
               label="Username"
             >
-              {getFieldDecorator('username', {
+              {getFieldDecorator('login', {
                 rules: [{ required: true, message: 'Please input your username!' }],
               })(
                 <Input />
@@ -37,7 +37,7 @@ class Login extends React.Component{
             <Form.Item
               label="Password"
             >
-              {getFieldDecorator('pass', {
+              {getFieldDecorator('password', {
                 rules: [{ required: true, message: 'Please input your password!' }],
               })(
                 <Input />
