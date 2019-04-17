@@ -1,6 +1,7 @@
 import React from 'react'
 import "antd/dist/antd.css"
 import './style.scss'
+import axios from 'axios'
 import { Table, Input } from 'antd';
 const Search = Input.Search;
 const { Column } = Table;
@@ -28,6 +29,18 @@ const data = [{
   phone: 'Phone3',
 }];
 class Students_lib extends React.Component{
+  state = {
+  students: []
+  }
+
+  componentDidMount() {
+    axios.get(`https://library-service-naukma.herokuapp.com/api/students`)
+      .then(res => {
+        const students = res.data;
+        this.setState({ students });
+        console.log('Got studets: ', this.state.students.map(students => students.name));
+      })
+  }
 render(){
     return(
         <div className='catalog'>
@@ -39,7 +52,7 @@ render(){
       enterButton
     />
     </div>
-<Table dataSource={data}>
+    <Table dataSource={this.state.students} rowKey={students => students.isbn}>
     <Column
       title="First Name"
       dataIndex="firstname"
