@@ -3,18 +3,22 @@ import "antd/dist/antd.css"
 import {Link} from 'react-router-dom'
 import {Form, Select, Input, Button} from 'antd'
 import './style.scss'
+import axios from 'axios'
 
 
 const { Option } = Select;
 
 class Login extends React.Component{
     handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.form.validateFields((err, values) => {
-          if (!err) {
-            console.log('Received values of form: ', values);
-          }
-        });
+      e.preventDefault();
+      this.props.form.validateFieldsAndScroll((err, values) => {
+        if (!err) {
+          axios.post(`https://library-service-naukma.herokuapp.com/api/token`, {...values})
+      .then(res => {
+        console.log('Received values of form: ', values);
+      })
+    }
+      });
     }
     render() {
         const { getFieldDecorator } = this.props.form;
