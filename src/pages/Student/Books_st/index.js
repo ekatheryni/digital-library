@@ -2,29 +2,25 @@ import React from 'react'
 import "antd/dist/antd.css"
 import './style.scss'
 import { Table, Input } from 'antd';
+import axios from 'axios'
 const Search = Input.Search;
 const { Column } = Table;
 
-const data = [{
-  key: '1',
-  title: 'Book1',
-  author: 'Author1',
-  quantity: 32,
-  description: 'Genre1',
-}, {
-    key: '2',
-    title: 'Book2',
-    author: 'Author2',
-    quantity: 5,
-    description: 'Genre2',
-}, {
-    key: '3',
-    title: 'Book3',
-    author: 'Author3',
-    quantity: 2,
-    description: 'Genre3',
-}];
 class Books_st extends React.Component{
+
+  state = {
+    books: []
+  }
+
+  componentDidMount() {
+    axios.get(`https://library-service-naukma.herokuapp.com/api/publications/available`)
+      .then(res => {
+        const books = res.data;
+        this.setState({ books });
+        console.log('Got books: ', this.state.books.map(books => books.name));
+      })
+  }
+
 render(){
     return(
         <div className='catalog'>
@@ -36,11 +32,11 @@ render(){
       enterButton
     />
     </div>
-<Table dataSource={data}>
+<Table dataSource={this.state.books} rowKey={books => books.isbn}>
     <Column
-      title="Title"
-      dataIndex="title"
-      key="title"
+      title="Name"
+      dataIndex="name"
+      key="name"
     />
     <Column
       title="Author"
@@ -54,8 +50,8 @@ render(){
     />
     <Column
       title="Genre"
-      dataIndex="description"
-      key="description"
+      dataIndex="genre"
+      key="genre"
     />
     <Column
       title="Action"
