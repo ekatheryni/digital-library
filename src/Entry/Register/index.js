@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import "antd/dist/antd.css"
 import axios from 'axios'
 import './style.scss'
@@ -47,6 +48,7 @@ import {
           axios.post(`https://library-service-naukma.herokuapp.com/api/students`, {...values, GroupCode: values.GroupCode[0]})
       .then(res => {
         console.log('Received values of form: ', values);
+        this.props.history.push('/login');
       })
     }
       });

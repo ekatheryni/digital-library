@@ -13,6 +13,26 @@ function Header() {
             </div>
             <ul className='menu'>
             
+<<<<<<< HEAD
+=======
+                <li>
+                    <Link to='/'>
+                        
+                    </Link>
+                </li>
+
+                <li>
+                    <Link to='/student'>
+                        
+                    </Link>
+                </li>
+
+                <li>
+                    <Link to='/librarian'>
+                        
+                    </Link>
+                </li>
+>>>>>>> 589077ba834a0dcd810292b0c9ed4fc3788e7d3f
             </ul>
         </header>
     )    
