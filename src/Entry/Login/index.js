@@ -1,6 +1,6 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import "antd/dist/antd.css"
-import {Link} from 'react-router-dom'
 import {Form, Select, Input, Button} from 'antd'
 import './style.scss'
 import axios from 'axios'
@@ -15,7 +15,8 @@ class Login extends React.Component{
         if (!err) {
           axios.post(`https://library-service-naukma.herokuapp.com/api/token`, {...values})
       .then(res => {
-        console.log('Received values of form: ', values);
+        console.log('Received values ', values);
+        this.props.history.push('/student');
       })
     }
       });
