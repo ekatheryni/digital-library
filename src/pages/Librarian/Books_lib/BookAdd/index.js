@@ -58,7 +58,64 @@ import {
       
       return (
         <div className='bookadd'>
-        
+        <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+          <Form.Item
+            label={(
+              <span>
+                Book Title&nbsp;
+              </span>
+            )}
+          >
+            {getFieldDecorator('Name', {
+              rules: [{ required: true, message: 'Please input title!', whitespace: true }],
+            })(
+              <Input type="text"/>
+            )}
+          </Form.Item>
+          <Form.Item
+            label={(
+              <span>
+                Author&nbsp;
+              </span>
+            )}
+          >
+            {getFieldDecorator('Author', {
+              rules: [{ required: true, message: 'Please input author!', whitespace: true }],
+            })(
+              <Input type="text"/>
+            )}
+          </Form.Item>
+          <Form.Item
+            label={(
+              <span>
+                Description&nbsp;
+              </span>
+            )}
+          >
+            {getFieldDecorator('Description', {
+              rules: [{ required: true, message: 'Please input description!', whitespace: true }],
+            })(
+              <Input type="text"/>
+            )}
+          </Form.Item>
+          <Form.Item
+            label={(
+              <span>
+                Genre&nbsp;
+              </span>
+            )}
+          >
+            {getFieldDecorator('Genre', {
+              rules: [{ required: true, message: 'Please input genre!', whitespace: true }],
+            })(
+              <Input type="text"/>
+            )}
+          </Form.Item>
+          
+          <Form.Item {...tailFormItemLayout}>
+            <Button type="primary" htmlType="submit">Add</Button>
+          </Form.Item>
+        </Form>
         </div>
       );
     }

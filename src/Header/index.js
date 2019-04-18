@@ -13,23 +13,6 @@ function Header() {
             </div>
             <ul className='menu'>
             
-                <li>
-                    <Link to='/'>
-                        About
-                    </Link>
-                </li>
-
-                <li>
-                    <Link to='/student'>
-                        Student
-                    </Link>
-                </li>
-
-                <li>
-                    <Link to='/librarian'>
-                        Librarian
-                    </Link>
-                </li>
             </ul>
         </header>
     )    

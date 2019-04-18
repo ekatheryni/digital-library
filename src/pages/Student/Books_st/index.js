@@ -20,7 +20,6 @@ class Books_st extends React.Component{
           books,
           booksFiltered: books 
         });
-        console.log('Got books: ', this.state.books.map(books => books.name));
       })
   }
 
