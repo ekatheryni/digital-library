@@ -23,7 +23,6 @@ import {
           axios.post(`https://library-service-naukma.herokuapp.com/api/publications`, {...values})
       .then(res => {
         console.log('Received values of form: ', values);
-        this.props.history.push('/login');
       })
     }
       });
@@ -65,6 +64,19 @@ import {
       return (
         <div className='bookadd'>
         <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+        <Form.Item
+            label={(
+              <span>
+                ID&nbsp;
+              </span>
+            )}
+          >
+            {getFieldDecorator('Isbn', {
+              rules: [{ required: true, message: 'Please input isbn!', whitespace: true }],
+            })(
+              <Input type="text"/>
+            )}
+          </Form.Item>
           <Form.Item
             label={(
               <span>
