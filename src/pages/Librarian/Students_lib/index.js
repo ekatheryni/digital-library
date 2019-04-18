@@ -6,28 +6,7 @@ import { Table, Input } from 'antd';
 const Search = Input.Search;
 const { Column } = Table;
 
-const data = [{
-  key: '1',
-  firstname: 'Name1',
-  lastname: 'Surname1',
-  faculty: 'Faculty1',
-  email: 'Mail1',
-  phone: 'Phone1',
-}, {
-    key: '2',
-    firstname: 'Name2',
-  lastname: 'Surname2',
-  faculty: 'Faculty2',
-  email: 'Mail2',
-  phone: 'Phone2',
-}, {
-    key: '3',
-    firstname: 'Name3',
-  lastname: 'Surname3',
-  faculty: 'Faculty3',
-  email: 'Mail3',
-  phone: 'Phone3',
-}];
+
 class Students_lib extends React.Component{
   state = {
   students: []
@@ -38,7 +17,6 @@ class Students_lib extends React.Component{
       .then(res => {
         const students = res.data;
         this.setState({ students });
-        console.log('Got studets: ', this.state.students.map(students => students.name));
       })
   }
 render(){
@@ -55,17 +33,17 @@ render(){
     <Table dataSource={this.state.students} rowKey={students => students.isbn}>
     <Column
       title="First Name"
-      dataIndex="firstname"
+      dataIndex="firstName"
       key="firstname"
     />
     <Column
       title="Last Name"
-      dataIndex="lastname"
+      dataIndex="lastName"
       key="lastname"
     />
     <Column
-      title="Faculty"
-      dataIndex="faculty"
+      title="Group"
+      dataIndex="groupCode"
       key="faculty"
     />
     <Column
@@ -75,7 +53,7 @@ render(){
     />
     <Column
       title="Phone number"
-      dataIndex="phone"
+      dataIndex="phoneNumber"
       key="phone"
     />
   </Table>
