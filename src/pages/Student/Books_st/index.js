@@ -72,8 +72,8 @@ render(){
       title="Action"
       key="action"
       render={(text, record) => (
-        <span>
-          <a href="javascript:;">Borrow</a>
+        <span type="primary" htmlType="submit">
+          <a href="http://localhost:3000/Books_my">Borrow</a>
         </span>
       )}
     />

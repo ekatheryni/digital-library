@@ -48,7 +48,7 @@ render(){
       enterButton
     />
     </div>
-<Table dataSource={this.state.booksFiltered} rowKey={books => books.isbn}>
+<Table>
     <Column
       title="Name"
       dataIndex="name"
