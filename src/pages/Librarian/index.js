@@ -3,7 +3,7 @@ import "antd/dist/antd.css"
 import './style.scss'
 
 import {Link} from 'react-router-dom'
-import { Card, Icon, Avatar } from 'antd';
+import { Card, Icon } from 'antd';
 
 const { Meta } = Card;
 
@@ -16,7 +16,7 @@ render(){
   <Card
     style={{ width: 300 }}
     cover={<img className="card_img" src={require('../../assets/bookmark.svg')}/>}
-    actions={[<Icon type="plus" />,<Icon type="edit" />,<Icon type="delete" />]}
+    actions={[<Link to='/lib_books_add'><Icon type="plus"/></Link>,<Icon type="edit" />,<Icon type="delete" />]}
   >
     <Meta
       title="Book catalog"
