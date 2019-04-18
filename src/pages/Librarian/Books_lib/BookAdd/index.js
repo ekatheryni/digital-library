@@ -1,6 +1,8 @@
 import React from 'react'
 import "antd/dist/antd.css"
 import './style.scss'
+
+import axios from 'axios'
 import {
     Form, Input, Tooltip, Icon, Cascader, Select, Button, AutoComplete,
   } from 'antd';
@@ -18,8 +20,12 @@ import {
       e.preventDefault();
       this.props.form.validateFieldsAndScroll((err, values) => {
         if (!err) {
-          console.log('Received values of form: ', values);
-        }
+          axios.post(`https://library-service-naukma.herokuapp.com/api/publications`, {...values})
+      .then(res => {
+        console.log('Received values of form: ', values);
+        this.props.history.push('/login');
+      })
+    }
       });
     }
   
@@ -107,6 +113,19 @@ import {
           >
             {getFieldDecorator('Genre', {
               rules: [{ required: true, message: 'Please input genre!', whitespace: true }],
+            })(
+              <Input type="text"/>
+            )}
+          </Form.Item>
+          <Form.Item
+            label={(
+              <span>
+                Quantity&nbsp;
+              </span>
+            )}
+          >
+            {getFieldDecorator('Quantity', {
+              rules: [{ required: true, message: 'Please input quantity!', whitespace: true }],
             })(
               <Input type="text"/>
             )}
