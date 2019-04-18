@@ -15,8 +15,10 @@ class Login extends React.Component{
         if (!err) {
           axios.post(`https://library-service-naukma.herokuapp.com/api/token`, {...values})
       .then(res => {
+        console.log('Res: ', res);
         console.log('Received values ', values);
-        this.props.history.push('/student');
+        if (values.login === 'librarian1') this.props.history.push('/librarian');
+        else this.props.history.push('/student');
       })
     }
       });
