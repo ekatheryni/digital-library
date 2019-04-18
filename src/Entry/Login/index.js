@@ -1,12 +1,18 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
 import "antd/dist/antd.css"
-import {Form, Select, Input, Button} from 'antd'
+import {Form, Select, Input, Button, notification} from 'antd'
 import './style.scss'
 import axios from 'axios'
 
 
 const { Option } = Select;
+
+const openNotificationWithIcon = (type) => {
+  notification[type]({
+    message: 'Notification',
+    description: 'You successfully loged in',
+  });
+};
 
 class Login extends React.Component{
     handleSubmit = (e) => {
@@ -15,7 +21,6 @@ class Login extends React.Component{
         if (!err) {
           axios.post(`https://library-service-naukma.herokuapp.com/api/token`, {...values})
       .then(res => {
-        console.log('Received values ', values);
         this.props.history.push('/student');
       })
     }
@@ -47,7 +52,7 @@ class Login extends React.Component{
             <Form.Item
               wrapperCol={{ span: 12, offset: 5 }}
             >
-              <Button type="primary" htmlType="submit">
+              <Button type="primary" htmlType="submit" onClick={() => openNotificationWithIcon('success')}>
                 Submit
               </Button>
             </Form.Item>
